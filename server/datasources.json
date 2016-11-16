@@ -1,0 +1,11 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory",
+    "host": "localhost",
+    "port": "3306",
+    "database": "bughouse",
+    "username": "root",
+    "password": "x102030"
+  }
+}
