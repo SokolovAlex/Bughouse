@@ -1,12 +1,22 @@
-import Html exposing (Html, div, h1, p, text)
-import Html.Attributes exposing (..)
+import Html exposing (Html, button, div, text)
+import Html.Events exposing (onClick)
+--import Chessboard exposing (..)
 
 main =
-    div
-        [ class "wrapper" ]
-        [ h1
-            [ class "headline" ]
-            [ text "Hello World" ]
-        , p []
-            [ text "HTML, mit Unqualified Imports." ]
-        ]
+  Html.beginnerProgram {
+    model = model,
+    view = view,
+    update = update
+    }
+
+model : Int
+model =
+  0
+
+update : Int -> Int
+update num = num + 2
+
+-- VIEW
+view : Int -> Html msg
+view model =
+  div []

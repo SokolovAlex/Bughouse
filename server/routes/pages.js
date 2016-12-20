@@ -7,11 +7,8 @@ module.exports = app => {
     var router = app.loopback.Router();
 
     router.get('/', (req, res) => {
-
-        console.log(__dirname);
         res.sendFile(path.resolve(__dirname + '/../../public/views/main.html'));
     });
-
 
     return router;
 };

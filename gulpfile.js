@@ -9,7 +9,7 @@ var nodemon = require('gulp-nodemon');
 var paths = {
     views: 'public/views',
     dest: 'public',
-    elm: 'src/elm/**/*.elm',
+    elm: 'src/**/*.elm',
     staticAssets: 'src/*.{html,css}'
 };
 
