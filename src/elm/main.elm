@@ -1,6 +1,8 @@
-import Html exposing (Html, button, div, text)
+import Html exposing (Html, button, div, text, h2)
+import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
---import Chessboard exposing (..)
+
+import Chessboard
 
 main =
   Html.beginnerProgram {
@@ -10,13 +12,21 @@ main =
     }
 
 model : Int
+
 model =
   0
 
-update : Int -> Int
-update num = num + 2
+type Msg = StartGame String
+
+update msg model = 
+  case msg of 
+    StartGame text -> model
 
 -- VIEW
 view : Int -> Html msg
 view model =
-  div []
+  div [class "test"] 
+    [ 
+      h2 [] [text "Bughouse"] 
+      , Chessboard.chessboard
+    ]

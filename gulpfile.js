@@ -10,6 +10,7 @@ var paths = {
     views: 'public/views',
     dest: 'public',
     elm: 'src/**/*.elm',
+    elm_main: 'src/**/main.elm',
     staticAssets: 'src/*.{html,css}'
 };
 
@@ -20,9 +21,9 @@ gulp.task('clean', function(cb) {
 gulp.task('elm-init', elm.init);
 
 gulp.task('elm', ['elm-init'], function() {
-    return gulp.src(paths.elm)
+    return gulp.src(paths.elm_main)
         .pipe(plumber())
-        .pipe(elm({filetype : 'html'}))
+        .pipe(elm({ filetype: 'html' }))
         .pipe(gulp.dest(paths.views));
 });
 
@@ -37,11 +38,11 @@ gulp.task('watch', function() {
     gulp.watch(paths.staticAssets, ['static']);
 });
 
-gulp.task('start', function () {
+gulp.task('start', function() {
     nodemon({
-        script: '.'
-        , ext: 'js'
-        , env: { 'NODE_ENV': 'development' }
+        script: '.',
+        ext: 'js',
+        env: { 'NODE_ENV': 'development' }
     })
 });
 
