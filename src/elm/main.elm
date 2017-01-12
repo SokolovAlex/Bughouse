@@ -3,6 +3,7 @@ import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
 
 import Chessboard
+import Layout
 
 main =
   Html.beginnerProgram {
@@ -25,8 +26,11 @@ update msg model =
 -- VIEW
 view : Int -> Html msg
 view model =
-  div [class "test"] 
+  Layout.view(
+    div [class "test"] 
     [ 
-      h2 [] [text "Bughouse"] 
-      , Chessboard.chessboard
+      h2 [] [text "Bughouse"],
+      Chessboard.chessboard
     ]
+  )
+ 
