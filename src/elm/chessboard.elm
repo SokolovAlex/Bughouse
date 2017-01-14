@@ -18,5 +18,5 @@ cell =
 chessboard =
   div [class "test"] 
     [ 
-      div [] [Html.text "12312141423132"]
+      div [] [Html.text "chessboard!"]
     ]

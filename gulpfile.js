@@ -5,7 +5,7 @@ var del = require('del');
 var nodemon = require('gulp-nodemon');
 
 var publicPaths = {
-    views: 'public/views',
+    js: 'public/js',
     css: 'public/css',
     dest: 'public'
 };
@@ -15,7 +15,7 @@ var paths = {
     elm: 'src/elm/*.elm',
     elm_main: 'src/elm/main.elm',
     styles: "./src/styles/*.styl",
-    staticAssets: 'src/*.{html,css}'
+    views: 'src/views/*.html'
 };
 
 gulp.task('clean', function(cb) {
@@ -27,19 +27,21 @@ gulp.task('elm-init', $.elm.init);
 gulp.task('elm', ['elm-init'], function() {
     return gulp.src(paths.elm_main)
         .pipe($.plumber())
-        .pipe($.elm({ filetype: 'html' }))
-        .pipe(gulp.dest(publicPaths.views));
+        .pipe($.elm())
+        .pipe(gulp.dest(publicPaths.js));
 });
 
-gulp.task('staticAssets', function() {
-    return gulp.src(paths.staticAssets)
+gulp.task('views', function() {
+    return gulp.src(paths.views)
         .pipe($.plumber())
+        //.on('data', (file) => console.log('------------>', file))
         .pipe(gulp.dest(publicPaths.dest));
 });
 
 gulp.task('watch', function() {
     gulp.watch(paths.elm, ['elm']);
-    gulp.watch(path.styles, ['styles']);
+    gulp.watch(paths.styles, ['styles']);
+    gulp.watch(paths.views, ['views']);
     gulp.watch(paths.staticAssets, ['static']);
 });
 
@@ -60,6 +62,6 @@ gulp.task('styles', function() {
         .pipe(gulp.dest(publicPaths.css));
 });
 
-gulp.task('build', ['elm', 'staticAssets']);
-gulp.task('dev', ['build', 'watch']);
+gulp.task('build', ['elm', 'styles', 'views']);
+gulp.task('dev', ['build', 'start', 'watch']);
 gulp.task('default', ['build', 'start']);

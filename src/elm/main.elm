@@ -27,10 +27,6 @@ update msg model =
 view : Int -> Html msg
 view model =
   Layout.view(
-    div [class "test"] 
-    [ 
-      h2 [] [text "Bughouse"],
-      Chessboard.chessboard
-    ]
+    Chessboard.chessboard
   )
  
